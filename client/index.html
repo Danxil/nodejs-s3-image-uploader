@@ -1,0 +1,34 @@
+<html>
+<head></head>
+<body>
+  <h1>Upload</h1>
+  <input id="upload-input" type="file" />
+  <button id="upload-input-btn">Upload</button>
+  <script>
+    const uploadFile = () => {
+      const file = document.getElementById('upload-input').files[0];
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        const result = e.target.result;
+
+        console.log(result);
+        fetch('/upload', {
+          method: 'POST',
+          body: result,
+          headers: {
+            'Content-Type': 'image/jpg'
+          },
+        })
+      };
+      reader.onerror = function(e) {
+        console.log('Error : ' + e.type);
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    document.getElementById('upload-input-btn').addEventListener('click', uploadFile);
+
+  </script>
+</body>
+</html>
