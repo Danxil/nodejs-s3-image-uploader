@@ -1,6 +1,8 @@
 import S3 from 'aws-sdk/clients/s3';
 import { Stream } from 'stream';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class S3UploaderService {
   upload(fileName: string) {
     const s3 = new S3({
