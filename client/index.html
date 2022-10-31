@@ -12,12 +12,11 @@
       reader.onload = function(e) {
         const result = e.target.result;
 
-        console.log(result);
-        fetch('/upload', {
+        fetch(`/${file.name}`, {
           method: 'POST',
           body: result,
           headers: {
-            'Content-Type': 'image/jpg'
+            'Content-Type': `image/${file.name.split('.').reverse()[0]}`
           },
         })
       };
